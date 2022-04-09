@@ -11,4 +11,6 @@
     <string name="da">DA</string>
     <string name="unit_value">Unit value</string>
     <string name="quantity">Quantity</string>
+    <string name="bit">BiT</string>
+    <string name="cash">Cash</string>
 </resources>

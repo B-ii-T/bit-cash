@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/splash_screen_container"
+    tools:context=".SplashScreen">
+    <TextView
+        style="@style/splash_screen_text"
+        android:textColor="@color/black"
+        android:text="@string/bit"/>
+    <TextView
+        style="@style/splash_screen_text"
+        android:textColor="@color/super_green"
+        android:text="@string/cash"/>
+</LinearLayout>
