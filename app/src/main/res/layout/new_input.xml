@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/new_unit_container">
+
+    <EditText
+        android:id="@+id/new_unit_value"
+        style="@style/new_unit_input"
+        android:hint="@string/unit_value" />
+    <TextView
+        android:id="@+id/value_text"
+        style="@style/value_text" />
+    <EditText
+        android:id="@+id/new_unit_qnt"
+        android:hint="@string/quantity"
+        style="@style/new_unit_input"/>
+</LinearLayout>

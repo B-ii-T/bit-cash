@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_white"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:id="@+id/total_container"
+        style="@style/total_container"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/total_text"
+            style="@style/total_text"
+            android:text="@string/total"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/total_value"
+            style="@style/total_value"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            style="@style/total_text"
+            android:text="@string/da"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/unit_recycler_view"
+        style="@style/recycler_view"
+        tools:listitem="@layout/unit_exmpl"
+        tools:ignore="MissingConstraints" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_unit_btn"
+        style="@style/fab"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/add_new_unit" />
+</androidx.constraintlayout.widget.ConstraintLayout>

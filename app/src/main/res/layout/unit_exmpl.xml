@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/unit_card"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        style="@style/unit_container">
+
+        <TextView
+            android:id="@+id/unit_value"
+            style="@style/unit_value"
+            android:text="@string/unit05" />
+        <TextView
+            android:id="@+id/unit_text"
+            android:layout_toEndOf="@id/unit_value"
+            style="@style/unit_text"
+            android:text="@string/unit"/>
+        <LinearLayout
+            android:id="@+id/control_box"
+            style="@style/control_box">
+            <Button
+                android:id="@+id/control_btn_minus"
+                style="@style/control_btn"
+                android:text="@string/btn_minus"/>
+            <TextView
+                android:id="@+id/unit_qnt"
+                style="@style/qnt_text"
+                android:text="@string/qnt"/>
+            <Button
+                android:id="@+id/control_btn_plus"
+                style="@style/control_btn"
+                android:text="@string/btn_plus"/>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

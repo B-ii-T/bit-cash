@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Bit Cash</string>
+    <string name="unit05">05</string>
+    <string name="unit">DA</string>
+    <string name="qnt">QNT</string>
+    <string name="btn_plus">+</string>
+    <string name="btn_minus">-</string>
+    <string name="add_new_unit">add new unit</string>
+    <string name="total_text">Total</string>
+    <string name="total">Total :</string>
+    <string name="da">DA</string>
+    <string name="unit_value">Unit value</string>
+    <string name="quantity">Quantity</string>
+</resources>
