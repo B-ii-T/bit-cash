@@ -3,6 +3,7 @@ package com.example.bitcash;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -63,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             }
         }).attachToRecyclerView(recyclerView);
         //calculating total
+        int numRows = (int) DatabaseUtils.queryNumEntries(cashDatabase, UnitEntry.TABLE_NAME);
         //setting the total text view
+        totalValue.setText(String.valueOf(numRows));
         //add a new unit
         addUnitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
