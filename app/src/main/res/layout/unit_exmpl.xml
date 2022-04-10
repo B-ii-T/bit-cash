@@ -9,11 +9,12 @@
             android:id="@+id/unit_value"
             style="@style/unit_value"
             android:text="@string/unit05" />
+
         <TextView
             android:id="@+id/unit_text"
-            android:layout_toEndOf="@id/unit_value"
             style="@style/unit_text"
-            android:text="@string/unit"/>
+            android:layout_toEndOf="@id/unit_value"
+            android:text="@string/unit" />
         <LinearLayout
             android:id="@+id/control_box"
             style="@style/control_box">
