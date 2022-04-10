@@ -1,6 +1,7 @@
 package com.example.bitcash;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder
     //variables declaration
     private Context context;
     private Cursor cursor;
+    public final int simpleAmount = 1;
+    public final int longAmount = 10;
     //inner class
     public static class UnitViewHolder extends RecyclerView.ViewHolder{
         //variables declaration
@@ -62,12 +65,14 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder
         holder.plusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updateUnitPlus(holder.unitValue.getText().toString(), holder.unitQnt.getText().toString(), simpleAmount);
             }
         });
         //method to increase the quantity for a value by 10
         holder.plusBtn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                updateUnitPlus(holder.unitValue.getText().toString(), holder.unitQnt.getText().toString(), longAmount);
                 return true;
             }
         });
@@ -75,12 +80,14 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder
         holder.minusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updateUnitMinus(holder.unitValue.getText().toString(), holder.unitQnt.getText().toString(), simpleAmount);
             }
         });
         //method to decrease the quantity for a value by 10
         holder.minusBtn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                updateUnitMinus(holder.unitValue.getText().toString(), holder.unitQnt.getText().toString(), longAmount);
                 return true;
             }
         });
@@ -99,6 +106,26 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder
         cursor = newCursor;
         if(newCursor != null){
             notifyDataSetChanged();
+        }
+    }
+    //this method is called to increase a unit quantity
+    public void updateUnitPlus(String value, String quantity, int amount){
+        ContentValues cv = new ContentValues();
+        cv.put(UnitEntry.COLUMN_VALUE, Integer.parseInt(value));
+        cv.put(UnitEntry.COLUMN_QUANTITY, Integer.parseInt(quantity)+amount);
+        MainActivity.cashDatabase.update(UnitEntry.TABLE_NAME, cv, UnitEntry.COLUMN_VALUE + " = " + Integer.parseInt(value), null);
+        swapCursor(MainActivity.getAllUnits());
+    }
+    //this method is called to decrease a unit quantity
+    public void updateUnitMinus(String value, String quantity, int amount){
+        if(Integer.parseInt(quantity) > 0){
+            if(Integer.parseInt(quantity) >= amount){
+                ContentValues cv = new ContentValues();
+                cv.put(UnitEntry.COLUMN_VALUE, Integer.parseInt(value));
+                cv.put(UnitEntry.COLUMN_QUANTITY, Integer.parseInt(quantity)-amount);
+                MainActivity.cashDatabase.update(UnitEntry.TABLE_NAME, cv, UnitEntry.COLUMN_VALUE + " = " + Integer.parseInt(value), null);
+                swapCursor(MainActivity.getAllUnits());
+            }
         }
     }
 }

@@ -23,9 +23,9 @@ import com.example.bitcash.UnitContract.*;
 
 public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDialogListener {
     //variables declaration
-    private SQLiteDatabase cashDatabase;
+    static SQLiteDatabase cashDatabase;
     private UnitAdapter adapter;
-    private final String order = " DESC";
+    public static final String order = " DESC";
     @Override
     //this method is called to create the activity
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         }
     }
     //this method is called to get all units from the database
-    public Cursor getAllUnits(){
+    public static Cursor getAllUnits(){
         return cashDatabase.query(
                 UnitEntry.TABLE_NAME,
                 null,
