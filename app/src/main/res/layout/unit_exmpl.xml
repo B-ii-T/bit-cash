@@ -8,28 +8,35 @@
         <TextView
             android:id="@+id/unit_value"
             style="@style/unit_value"
+            android:layout_toStartOf="@id/unit_text"
             android:text="@string/unit05" />
 
         <TextView
             android:id="@+id/unit_text"
             style="@style/unit_text"
-            android:layout_toEndOf="@id/unit_value"
+            android:layout_marginEnd="15dp"
+            android:layout_toStartOf="@id/control_box"
             android:text="@string/unit" />
+
         <LinearLayout
             android:id="@+id/control_box"
             style="@style/control_box">
+
             <Button
                 android:id="@+id/control_btn_minus"
                 style="@style/control_btn"
-                android:text="@string/btn_minus"/>
+                android:text="@string/btn_minus" />
+
             <TextView
                 android:id="@+id/unit_qnt"
                 style="@style/qnt_text"
-                android:text="@string/qnt"/>
+                android:maxLength="3"
+                android:text="@string/qnt" />
+
             <Button
                 android:id="@+id/control_btn_plus"
                 style="@style/control_btn"
-                android:text="@string/btn_plus"/>
+                android:text="@string/btn_plus" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

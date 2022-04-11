@@ -8,16 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.bitcash.UnitContract.UnitEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -72,6 +71,16 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                 //showing the add unit dialog
                 UnitDialog dialog = new UnitDialog();
                 dialog.show(getSupportFragmentManager(), "add dialog");
+            }
+        });
+        //deleting all units from the database
+        ImageView deleteBtn = findViewById(R.id.delete_btn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cashDatabase.execSQL("DELETE FROM " + UnitEntry.TABLE_NAME);
+                adapter.swapCursor(getAllUnits());
+                calculateTotal();
             }
         });
     }

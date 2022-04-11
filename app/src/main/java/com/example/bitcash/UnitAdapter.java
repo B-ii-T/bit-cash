@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -61,6 +63,12 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder
         holder.unitQnt.setText(String.valueOf(qnt));
         //using the tag to identify the item with the assigned id in the database
         holder.itemView.setTag(id);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), holder.unitValue.getText().toString()+" DA", Toast.LENGTH_SHORT).show();
+            }
+        });
         //method to increase the quantity for a value by 1
         holder.plusBtn.setOnClickListener(new View.OnClickListener() {
             @Override

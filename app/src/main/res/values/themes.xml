@@ -16,11 +16,18 @@
     <style name="header">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:background">@color/white</item>
     </style>
+    <style name="options">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginEnd">15dp</item>
+    </style>
     <style name="unit_card">
-        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_height">111dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_margin">25dp</item>
         <item name="cardCornerRadius">33dp</item>
@@ -33,12 +40,14 @@
         <item name="android:padding">20dp</item>
     </style>
     <style name="unit_value">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">50sp</item>
-        <item name="android:fontFamily">sans-serif-black</item>
-        <item name="android:gravity">center</item>
+<!--        <item name="android:fontFamily">sans-serif-black</item>-->
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
     <style name="unit_text">
         <item name="android:layout_width">wrap_content</item>
@@ -46,7 +55,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">30sp</item>
 <!--        <item name="android:fontFamily">sans-serif-black</item>-->
-        <item name="android:gravity">bottom</item>
+        <item name="android:gravity">center</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_marginStart">5dp</item>
     </style>
