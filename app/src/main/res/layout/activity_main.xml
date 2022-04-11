@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_white"
     tools:context=".MainActivity">
+    <RelativeLayout
+        android:id="@+id/header"
+        style="@style/header">
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/total_container"
         style="@style/total_container"
@@ -27,11 +30,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/unit_recycler_view"
         style="@style/recycler_view"
-        tools:listitem="@layout/unit_exmpl"
-        tools:ignore="MissingConstraints" />
+        android:layout_above="@+id/total_container"
+        tools:ignore="MissingConstraints"
+        tools:listitem="@layout/unit_exmpl" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_unit_btn"
         style="@style/fab"
         tools:ignore="MissingConstraints"
         android:contentDescription="@string/add_new_unit" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

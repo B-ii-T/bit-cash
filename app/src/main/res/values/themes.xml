@@ -13,6 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:background">@color/white</item>
+    </style>
     <style name="unit_card">
         <item name="android:layout_height">100dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -72,21 +78,15 @@
     </style>
     <style name="recycler_view">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="layout_constraintTop_toTopOf">parent</item>
-        <item name="layout_constraintBottom_toTopOf">@id/total_container</item>
-        <item name="layout_constraintTop_toBottomOf">@id/total_container</item>
-        <item name="layout_constraintEnd_toEndOf">parent</item>
-        <item name="layout_constraintStart_toStartOf">parent</item>
-        <item name="android:layout_marginBottom">50dp</item>
-        <item name="android:paddingTop">50dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_above">@id/total_container</item>
+        <item name="android:layout_below">@id/header</item>
     </style>
     <style name="fab">
         <item name="android:layout_width">55dp</item>
         <item name="android:layout_height">55dp</item>
-        <item name="layout_constraintBottom_toBottomOf">parent</item>
-        <item name="layout_constraintEnd_toEndOf">parent</item>
-<!--        <item name="layout_constraintStart_toStartOf">parent</item>-->
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
         <item name="android:backgroundTint">@color/super_green</item>
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:layout_marginBottom">25dp</item>
@@ -115,12 +115,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:gravity">start</item>
         <item name="android:background">@color/white</item>
-        <item name="layout_constraintEnd_toEndOf">parent</item>
-        <item name="layout_constraintStart_toStartOf">parent</item>
-        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="android:layout_alignParentBottom">true</item>
     </style>
     <style name="new_unit_container">
         <item name="android:layout_width">match_parent</item>

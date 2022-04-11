@@ -3,7 +3,6 @@ package com.example.bitcash;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -18,15 +17,17 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bitcash.UnitContract.UnitEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import java.util.ArrayList;
-import com.example.bitcash.UnitContract.*;
 
 public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDialogListener {
     //variables declaration
     static SQLiteDatabase cashDatabase;
     private UnitAdapter adapter;
     public static final String order = " DESC";
+    @SuppressLint("StaticFieldLeak")
+    public static TextView totalValue;
     @Override
     //this method is called to create the activity
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         //referring to views
         RecyclerView recyclerView = findViewById(R.id.unit_recycler_view);
         FloatingActionButton addUnitBtn = findViewById(R.id.add_unit_btn);
-        TextView totalValue = findViewById(R.id.total_value);
+        totalValue = findViewById(R.id.total_value);
+        calculateTotal();
         //informing that the recycle view has a fixed size of elements
         recyclerView.setHasFixedSize(true);
         //attaching adapter to recycler view
@@ -63,10 +65,6 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                 removeUnit((long) viewHolder.itemView.getTag());
             }
         }).attachToRecyclerView(recyclerView);
-        //calculating total
-        int numRows = (int) DatabaseUtils.queryNumEntries(cashDatabase, UnitEntry.TABLE_NAME);
-        //setting the total text view
-        totalValue.setText(String.valueOf(numRows));
         //add a new unit
         addUnitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             adapter.swapCursor(getAllUnits());
             //updating the recycler view to display the new element
             adapter.notifyDataSetChanged();
+            calculateTotal();
         }
     }
     //this method is called to get all units from the database
@@ -116,5 +115,19 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         cashDatabase.delete(UnitEntry.TABLE_NAME,
                 UnitEntry._ID + " = " + id, null);
         adapter.swapCursor(getAllUnits());
+        calculateTotal();
+    }
+    //this method is called to calculate the total value
+    @SuppressLint("Range")
+    public static void calculateTotal(){
+        //calculating total
+        String total_query = "SELECT SUM( " + UnitEntry.COLUMN_VALUE + " * " + UnitEntry.COLUMN_QUANTITY + " ) AS Total FROM " + UnitEntry.TABLE_NAME + ";";
+        Cursor c = cashDatabase.rawQuery(total_query ,null);
+        //setting the total text view
+        if(c.moveToFirst()){
+            int total = c.getInt(c.getColumnIndex("Total"));
+            totalValue.setText(String.valueOf(total));
+        }
+        c.close();
     }
 }

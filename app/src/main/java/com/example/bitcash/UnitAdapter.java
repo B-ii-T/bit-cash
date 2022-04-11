@@ -115,16 +115,18 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder
         cv.put(UnitEntry.COLUMN_QUANTITY, Integer.parseInt(quantity)+amount);
         MainActivity.cashDatabase.update(UnitEntry.TABLE_NAME, cv, UnitEntry.COLUMN_VALUE + " = " + Integer.parseInt(value), null);
         swapCursor(MainActivity.getAllUnits());
+        MainActivity.calculateTotal();
     }
     //this method is called to decrease a unit quantity
     public void updateUnitMinus(String value, String quantity, int amount){
-        if(Integer.parseInt(quantity) > 0){
-            if(Integer.parseInt(quantity) >= amount){
+        if(Integer.parseInt(quantity) > 1){
+            if(Integer.parseInt(quantity) >= amount+1){
                 ContentValues cv = new ContentValues();
                 cv.put(UnitEntry.COLUMN_VALUE, Integer.parseInt(value));
                 cv.put(UnitEntry.COLUMN_QUANTITY, Integer.parseInt(quantity)-amount);
                 MainActivity.cashDatabase.update(UnitEntry.TABLE_NAME, cv, UnitEntry.COLUMN_VALUE + " = " + Integer.parseInt(value), null);
                 swapCursor(MainActivity.getAllUnits());
+                MainActivity.calculateTotal();
             }
         }
     }
