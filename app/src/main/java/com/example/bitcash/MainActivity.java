@@ -2,6 +2,7 @@ package com.example.bitcash;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,6 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.bitcash.UnitContract.UnitEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import maes.tech.intentanim.CustomIntent;
+//import maes.tech.intentanim.CustomIntent;
 
 public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDialogListener {
     //variables declaration
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             //this method is called when we swipe the item
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                //here goes alert dialog
                 removeUnit((long) viewHolder.itemView.getTag());
             }
         }).attachToRecyclerView(recyclerView);
@@ -81,6 +86,26 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                 cashDatabase.execSQL("DELETE FROM " + UnitEntry.TABLE_NAME);
                 adapter.swapCursor(getAllUnits());
                 calculateTotal();
+            }
+        });
+        //go to settings
+        ImageView settingsBtn = findViewById(R.id.settings_btn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent settingsIntent = new Intent(MainActivity.this, Settings.class);
+                startActivity(settingsIntent);
+                CustomIntent.customType(MainActivity.this, "up-to-bottom");
+            }
+        });
+        //go to info
+        ImageView infoBtn = findViewById(R.id.info_btn);
+        infoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent infoIntent = new Intent(MainActivity.this, Info.class);
+                startActivity(infoIntent);
+                CustomIntent.customType(MainActivity.this, "up-to-bottom");
             }
         });
     }

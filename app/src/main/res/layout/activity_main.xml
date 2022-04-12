@@ -10,11 +10,15 @@
         android:id="@+id/header"
         style="@style/header">
         <ImageView
-            android:id="@+id/settings_btn"
+            android:id="@+id/info_btn"
             style="@style/options"
             android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_info" />
+        <ImageView
+            android:id="@+id/settings_btn"
+            style="@style/options"
+            android:layout_toStartOf="@id/info_btn"
             android:src="@drawable/ic_settings" />
-
         <ImageView
             android:id="@+id/delete_btn"
             style="@style/options"
