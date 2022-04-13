@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -123,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         });
     }
     //this method is called to get data from the dialog and save it to the database units table
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void passValues(int value, int quantity) {
         //creating a content values variable to hold the entries
@@ -138,10 +138,12 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         }else{
             //inserting into the database unites table
             cashDatabase.insert(UnitEntry.TABLE_NAME, null, cv);
-            //passing the new cursor
+            //passing the new cursor to display all elements
             adapter.swapCursor(getAllUnits());
-            //updating the recycler view to display the new element
-            adapter.notifyDataSetChanged();
+            //creating and playing sound effect
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.cash_register);
+            mp.start();
+            //calculating total value
             calculateTotal();
         }
     }
