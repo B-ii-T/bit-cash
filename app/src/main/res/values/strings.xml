@@ -13,4 +13,5 @@
     <string name="quantity">Quantity</string>
     <string name="bit">BiT</string>
     <string name="cash">Cash</string>
+    <string name="time">Time</string>
 </resources>

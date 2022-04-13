@@ -27,7 +27,7 @@
         <item name="android:layout_marginEnd">15dp</item>
     </style>
     <style name="unit_card">
-        <item name="android:layout_height">111dp</item>
+        <item name="android:layout_height">120dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_margin">25dp</item>
         <item name="cardCornerRadius">33dp</item>
@@ -97,7 +97,7 @@
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentEnd">true</item>
         <item name="android:backgroundTint">@color/super_green</item>
-        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
         <item name="android:layout_marginBottom">25dp</item>
         <item name="android:src">@drawable/ic_add</item>
         <item name="borderWidth">0dp</item>
@@ -125,6 +125,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:padding">10dp</item>
+        <item name="android:paddingStart">25dp</item>
         <item name="android:gravity">start</item>
         <item name="android:background">@color/white</item>
         <item name="android:layout_alignParentBottom">true</item>

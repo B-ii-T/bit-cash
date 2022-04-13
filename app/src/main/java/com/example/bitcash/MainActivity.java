@@ -5,14 +5,18 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -24,11 +28,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import maes.tech.intentanim.CustomIntent;
 //import maes.tech.intentanim.CustomIntent;
 
-public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDialogListener {
+public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDialogListener, PopupMenu.OnMenuItemClickListener {
     //variables declaration
     static SQLiteDatabase cashDatabase;
     private UnitAdapter adapter;
-    public static final String order = " DESC";
+    public static String orderType = " DESC";
+    public static String orderString = UnitEntry.COLUMN_TIMESTAMP;
     @SuppressLint("StaticFieldLeak")
     public static TextView totalValue;
     @Override
@@ -108,6 +113,14 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                 CustomIntent.customType(MainActivity.this, "up-to-bottom");
             }
         });
+        //change sort
+        ImageView sortBtn = findViewById(R.id.sort_btn);
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(sortBtn);
+            }
+        });
     }
     //this method is called to get data from the dialog and save it to the database units table
     @SuppressLint("NotifyDataSetChanged")
@@ -141,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                 null,
                 null,
                 null,
-                UnitEntry.COLUMN_TIMESTAMP + order
+                orderString + orderType
         );
     }
     //this method is called to delete a unit from the database
@@ -163,5 +176,34 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             totalValue.setText(String.valueOf(total));
         }
         c.close();
+    }
+    public void showPopup(View v){
+        PopupMenu popupMenu = new PopupMenu(this, v);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.inflate(R.menu.sort_menu);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            popupMenu.setForceShowIcon(true);
+        }
+        popupMenu.show();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.time_desc : orderString = UnitEntry.COLUMN_TIMESTAMP; orderType = " DESC"; adapter.swapCursor(getAllUnits());
+                return true;
+            case R.id.time_asc : orderString = UnitEntry.COLUMN_TIMESTAMP; orderType = " ASC"; adapter.swapCursor(getAllUnits());
+                return true;
+            case R.id.value_desc : orderString = UnitEntry.COLUMN_VALUE; orderType = " DESC"; adapter.swapCursor(getAllUnits());
+                return true;
+            case R.id.value_asc : orderString = UnitEntry.COLUMN_VALUE; orderType = " ASC"; adapter.swapCursor(getAllUnits());
+                return true;
+            case R.id.qnt_desc : orderString = UnitEntry.COLUMN_QUANTITY; orderType = " DESC"; adapter.swapCursor(getAllUnits());
+                return true;
+            case R.id.qnt_asc : orderString = UnitEntry.COLUMN_QUANTITY; orderType = " ASC"; adapter.swapCursor(getAllUnits());
+                return true;
+            default : return false;
+        }
     }
 }
