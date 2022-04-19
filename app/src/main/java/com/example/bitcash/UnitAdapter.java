@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import com.example.bitcash.UnitContract.*;
+import com.example.bitcash.UnitContract.UnitEntry;
 
 public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder>{
     //variables declaration

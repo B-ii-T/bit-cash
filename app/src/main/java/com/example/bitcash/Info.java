@@ -34,6 +34,7 @@ public class Info extends AppCompatActivity {
         setContentView(R.layout.activity_info);
         //referring to views
         stat = findViewById(R.id.statistics);
+        stat.setZoomEnabled(true);
         try{
             databaseToArray();
         } catch (Exception e){

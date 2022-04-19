@@ -2,9 +2,11 @@ package com.example.bitcash;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +19,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -25,9 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.bitcash.UnitContract.UnitEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import maes.tech.intentanim.CustomIntent;
-//import maes.tech.intentanim.CustomIntent;
 
 public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDialogListener, PopupMenu.OnMenuItemClickListener {
     //variables declaration
@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
     public static String orderType = " DESC";
     public static String orderString = UnitEntry.COLUMN_TIMESTAMP;
     @SuppressLint("StaticFieldLeak")
-    public static TextView totalValue;
+    public static TextView totalValue, emptyText;
+    @SuppressLint("StaticFieldLeak")
     @Override
     //this method is called to create the activity
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         RecyclerView recyclerView = findViewById(R.id.unit_recycler_view);
         FloatingActionButton addUnitBtn = findViewById(R.id.add_unit_btn);
         totalValue = findViewById(R.id.total_value);
+        emptyText = findViewById(R.id.empty_text);
         calculateTotal();
         //informing that the recycle view has a fixed size of elements
         recyclerView.setHasFixedSize(true);
@@ -71,8 +73,26 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             //this method is called when we swipe the item
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                //here goes alert dialog
-                removeUnit((long) viewHolder.itemView.getTag());
+                //alert dialog to confirm the delete and avoid accidents
+                AlertDialog.Builder deleteUnit = new AlertDialog.Builder(MainActivity.this);
+                deleteUnit.setTitle("This unit will be deleted");
+                deleteUnit.setIcon(R.drawable.ic_delete);
+                deleteUnit.setCancelable(false);
+                deleteUnit.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //calling the method to delete a unit
+                        removeUnit((long) viewHolder.itemView.getTag());
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //refreshing the adapter
+                        adapter.swapCursor(getAllUnits());
+                    }
+                });
+                AlertDialog deleteUnitDialog = deleteUnit.create();
+                deleteUnitDialog.show();
             }
         }).attachToRecyclerView(recyclerView);
         //add a new unit
@@ -89,9 +109,21 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cashDatabase.execSQL("DELETE FROM " + UnitEntry.TABLE_NAME);
-                adapter.swapCursor(getAllUnits());
-                calculateTotal();
+                //alert dialog to confirm the delete and avoid accidents
+                AlertDialog.Builder deleteUnits = new AlertDialog.Builder(MainActivity.this);
+                deleteUnits.setTitle("This unit will be deleted");
+                deleteUnits.setIcon(R.drawable.ic_delete);
+                deleteUnits.setCancelable(true);
+                deleteUnits.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //calling the method to delete all units
+                        deleteAllUnits();
+                        calculateTotal();
+                    }
+                });
+                AlertDialog deleteUnitsDialog = deleteUnits.create();
+                deleteUnitsDialog.show();
             }
         });
         //go to settings
@@ -149,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
     }
     //this method is called to get all units from the database
     public static Cursor getAllUnits(){
-        return cashDatabase.query(
+        Cursor c = cashDatabase.query(
                 UnitEntry.TABLE_NAME,
                 null,
                 null,
@@ -158,6 +190,9 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                 null,
                 orderString + orderType
         );
+//        handleEmptyAdapter(c);
+//        c.close();
+        return c;
     }
     //this method is called to delete a unit from the database
     private void removeUnit(long id) {
@@ -208,4 +243,16 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             default : return false;
         }
     }
+    public void deleteAllUnits(){
+        cashDatabase.execSQL("DELETE FROM " + UnitEntry.TABLE_NAME);
+        adapter.swapCursor(getAllUnits());
+    }
+//    public static void handleEmptyAdapter(Cursor c){
+//        //handling empty recycler view
+//        if(!c.moveToFirst()){
+//            emptyText.setVisibility(View.VISIBLE);
+//        }else{
+//            emptyText.setVisibility(View.GONE);
+//        }
+//    }
 }

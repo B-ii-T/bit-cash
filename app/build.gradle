@@ -40,4 +40,7 @@ dependencies {
 //    AnyChart for android dependency
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
     implementation("androidx.multidex:multidex:2.0.1")
+    //lottie animation dependency
+    def lottieVersion = "5.0.3"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

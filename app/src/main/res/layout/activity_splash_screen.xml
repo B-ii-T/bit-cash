@@ -12,4 +12,12 @@
         style="@style/splash_screen_text"
         android:textColor="@color/super_green"
         android:text="@string/cash"/>
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/cash_animation_view"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        app:lottie_autoPlay="false"-->
+<!--        app:lottie_rawRes="@raw/money"-->
+<!--        android:rotation="-90"-->
+<!--        app:lottie_loop="false"/>-->
 </LinearLayout>
