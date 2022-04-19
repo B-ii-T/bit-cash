@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             public void onClick(View view) {
                 //alert dialog to confirm the delete and avoid accidents
                 AlertDialog.Builder deleteUnits = new AlertDialog.Builder(MainActivity.this);
-                deleteUnits.setTitle("This unit will be deleted");
+                deleteUnits.setTitle("All units will be deleted");
                 deleteUnits.setIcon(R.drawable.ic_delete);
                 deleteUnits.setCancelable(true);
                 deleteUnits.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
