@@ -25,6 +25,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.bitcash.UnitContract.UnitEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import maes.tech.intentanim.CustomIntent;
@@ -36,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
     public static String orderType = " DESC";
     public static String orderString = UnitEntry.COLUMN_TIMESTAMP;
     @SuppressLint("StaticFieldLeak")
-    public static TextView totalValue, emptyText;
+    public static TextView totalValue;
+    LottieAnimationView emptyText;
     @SuppressLint("StaticFieldLeak")
     @Override
     //this method is called to create the activity
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         recyclerView.setAdapter(adapter);
         //attaching a linear layout manager to recycler view
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        handleEmptyAdapter();
         //creating an item touch helper to implement swipe to delete item
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
             @Override
@@ -172,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             cashDatabase.insert(UnitEntry.TABLE_NAME, null, cv);
             //passing the new cursor to display all elements
             adapter.swapCursor(getAllUnits());
+            handleEmptyAdapter();
             //creating and playing sound effect
             final MediaPlayer mp = MediaPlayer.create(this, R.raw.cash_register);
             mp.start();
@@ -190,8 +195,6 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                 null,
                 orderString + orderType
         );
-//        handleEmptyAdapter(c);
-//        c.close();
         return c;
     }
     //this method is called to delete a unit from the database
@@ -199,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         cashDatabase.delete(UnitEntry.TABLE_NAME,
                 UnitEntry._ID + " = " + id, null);
         adapter.swapCursor(getAllUnits());
+        handleEmptyAdapter();
         calculateTotal();
     }
     //this method is called to calculate the total value
@@ -246,13 +250,17 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
     public void deleteAllUnits(){
         cashDatabase.execSQL("DELETE FROM " + UnitEntry.TABLE_NAME);
         adapter.swapCursor(getAllUnits());
+        handleEmptyAdapter();
     }
-//    public static void handleEmptyAdapter(Cursor c){
-//        //handling empty recycler view
-//        if(!c.moveToFirst()){
-//            emptyText.setVisibility(View.VISIBLE);
-//        }else{
-//            emptyText.setVisibility(View.GONE);
-//        }
-//    }
+
+        public void handleEmptyAdapter(){
+        //handling empty recycler view
+        Cursor c = cashDatabase.rawQuery("SELECT * FROM " + UnitEntry.TABLE_NAME, null);
+        if(c.moveToFirst()){
+            emptyText.setVisibility(View.GONE);
+        }else{
+            emptyText.setVisibility(View.VISIBLE);
+        }
+        c.close();
+    }
 }
