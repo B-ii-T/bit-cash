@@ -113,21 +113,25 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //alert dialog to confirm the delete and avoid accidents
-                AlertDialog.Builder deleteUnits = new AlertDialog.Builder(MainActivity.this);
-                deleteUnits.setTitle("All units will be deleted");
-                deleteUnits.setIcon(R.drawable.ic_delete);
-                deleteUnits.setCancelable(true);
-                deleteUnits.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //calling the method to delete all units
-                        deleteAllUnits();
-                        calculateTotal();
-                    }
-                });
-                AlertDialog deleteUnitsDialog = deleteUnits.create();
-                deleteUnitsDialog.show();
+                if(getAllUnits().moveToFirst()){
+                    //alert dialog to confirm the delete and avoid accidents
+                    AlertDialog.Builder deleteUnits = new AlertDialog.Builder(MainActivity.this);
+                    deleteUnits.setTitle("All units will be deleted");
+                    deleteUnits.setIcon(R.drawable.ic_delete);
+                    deleteUnits.setCancelable(true);
+                    deleteUnits.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //calling the method to delete all units
+                            deleteAllUnits();
+                            calculateTotal();
+                        }
+                    });
+                    AlertDialog deleteUnitsDialog = deleteUnits.create();
+                    deleteUnitsDialog.show();
+                }else{
+                    Toast.makeText(MainActivity.this, "No units to delete", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         //go to settings
@@ -135,9 +139,10 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent settingsIntent = new Intent(MainActivity.this, Settings.class);
-                startActivity(settingsIntent);
-                CustomIntent.customType(MainActivity.this, "up-to-bottom");
+//                Intent settingsIntent = new Intent(MainActivity.this, Settings.class);
+//                startActivity(settingsIntent);
+//                CustomIntent.customType(MainActivity.this, "up-to-bottom");
+                Toast.makeText(MainActivity.this, "No settings yet", Toast.LENGTH_SHORT).show();
             }
         });
         //go to info
