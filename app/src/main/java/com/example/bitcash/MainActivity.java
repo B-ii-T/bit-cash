@@ -2,6 +2,7 @@ package com.example.bitcash;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +11,12 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Spannable;
+import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
+import android.view.InflateException;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -78,9 +85,9 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 //alert dialog to confirm the delete and avoid accidents
-                AlertDialog.Builder deleteUnit = new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder deleteUnit = new AlertDialog.Builder(MainActivity.this, R.style.new_unit_dialog);
                 deleteUnit.setTitle("This unit will be deleted");
-                deleteUnit.setIcon(R.drawable.ic_delete);
+                deleteUnit.setIcon(R.drawable.ic_delete_gold);
                 deleteUnit.setCancelable(false);
                 deleteUnit.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -97,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                 });
                 AlertDialog deleteUnitDialog = deleteUnit.create();
                 deleteUnitDialog.show();
+                deleteUnitDialog.getButton(deleteUnitDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.light_gray));
             }
         }).attachToRecyclerView(recyclerView);
         //add a new unit
@@ -115,9 +123,9 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
             public void onClick(View view) {
                 if(getAllUnits().moveToFirst()){
                     //alert dialog to confirm the delete and avoid accidents
-                    AlertDialog.Builder deleteUnits = new AlertDialog.Builder(MainActivity.this);
+                    AlertDialog.Builder deleteUnits = new AlertDialog.Builder(MainActivity.this, R.style.new_unit_dialog);
                     deleteUnits.setTitle("All units will be deleted");
-                    deleteUnits.setIcon(R.drawable.ic_delete);
+                    deleteUnits.setIcon(R.drawable.ic_delete_gold);
                     deleteUnits.setCancelable(true);
                     deleteUnits.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
@@ -128,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                         }
                     });
                     AlertDialog deleteUnitsDialog = deleteUnits.create();
+                    deleteUnitsDialog.getWindow().getAttributes().windowAnimations = R.style.new_unit_dialog; //style id
                     deleteUnitsDialog.show();
                 }else{
                     Toast.makeText(MainActivity.this, "No units to delete", Toast.LENGTH_SHORT).show();
@@ -224,7 +233,8 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         c.close();
     }
     public void showPopup(View v){
-        PopupMenu popupMenu = new PopupMenu(this, v);
+        ContextThemeWrapper ctw = new ContextThemeWrapper(this, R.style.popUpMenu);
+        PopupMenu popupMenu = new PopupMenu(ctw, v);
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.inflate(R.menu.sort_menu);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

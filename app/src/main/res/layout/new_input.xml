@@ -12,5 +12,6 @@
     <EditText
         android:id="@+id/new_unit_qnt"
         android:hint="@string/quantity"
+        android:textColor="@color/gold"
         style="@style/new_unit_input"/>
 </LinearLayout>

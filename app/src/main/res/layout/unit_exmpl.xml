@@ -7,35 +7,39 @@
 
         <TextView
             android:id="@+id/unit_value"
+            android:layout_marginStart="20dp"
             style="@style/unit_value"
-            android:layout_toStartOf="@id/unit_text"
             android:text="@string/unit05" />
 
         <TextView
             android:id="@+id/unit_text"
             style="@style/unit_text"
             android:layout_marginEnd="15dp"
-            android:layout_toStartOf="@id/control_box"
+            android:layout_toEndOf="@id/unit_value"
             android:text="@string/unit" />
 
         <LinearLayout
             android:id="@+id/control_box"
             style="@style/control_box">
 
-            <Button
-                android:id="@+id/control_btn_minus"
+            <ImageView
+                android:id="@+id/control_btn_plus"
                 style="@style/control_btn"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_control_btn"
                 android:text="@string/btn_minus" />
 
             <TextView
                 android:id="@+id/unit_qnt"
                 style="@style/qnt_text"
-                android:maxLength="3"
                 android:text="@string/qnt" />
 
-            <Button
-                android:id="@+id/control_btn_plus"
+            <ImageView
+                android:id="@+id/control_btn_minus"
                 style="@style/control_btn"
+                android:layout_marginTop="5dp"
+                android:rotation="180"
+                android:src="@drawable/ic_control_btn"
                 android:text="@string/btn_plus" />
         </LinearLayout>
     </RelativeLayout>

@@ -11,4 +11,7 @@
     <color name="gold">#FFD700</color>
     <color name="light_gold">#FFED8A</color>
     <color name="super_green">#41F876</color>
+    <color name="light_gray">#bdbdbd</color>
+    <color name="dark_gray">#9e9e9e</color>
+    <color name="shadow_color">#80000000</color>
 </resources>

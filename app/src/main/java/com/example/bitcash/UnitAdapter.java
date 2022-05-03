@@ -4,10 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -24,7 +27,7 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder
     public static class UnitViewHolder extends RecyclerView.ViewHolder{
         //variables declaration
         public TextView unitValue, unitQnt;
-        public Button plusBtn, minusBtn;
+        public ImageView plusBtn, minusBtn;
         //constructor
         public UnitViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,7 +64,7 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.UnitViewHolder
         holder.unitQnt.setText(String.valueOf(qnt));
         //using the tag to identify the item with the assigned id in the database
         holder.itemView.setTag(id);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.unitValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), holder.unitValue.getText().toString()+" DA", Toast.LENGTH_SHORT).show();

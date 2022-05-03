@@ -15,4 +15,10 @@
     <string name="cash">Cash</string>
     <string name="time">Time</string>
     <string name="sort">Sort</string>
+    <string name="last_created_first">Last created first</string>
+    <string name="last_created_last">Last created last</string>
+    <string name="highest_value_first">Highest value first</string>
+    <string name="highest_value_last">Highest value last</string>
+    <string name="largest_quantity_first">Largest quantity first</string>
+    <string name="largest_quantity_last">Largest quantity last</string>
 </resources>

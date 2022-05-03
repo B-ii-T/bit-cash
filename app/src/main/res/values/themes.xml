@@ -12,13 +12,17 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="popupMenuStyle">@style/popUpMenu</item>
+    </style>
+    <style name="popUpMenu" parent="ThemeOverlay.Material3.Dark">>
+        <item name="popupMenuBackground">@color/black</item>
     </style>
     <style name="header">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_alignParentTop">true</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/light_gray</item>
     </style>
     <style name="options">
         <item name="android:layout_width">30dp</item>
@@ -40,7 +44,7 @@
         <item name="android:padding">20dp</item>
     </style>
     <style name="unit_value">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">50sp</item>
@@ -62,28 +66,22 @@
     <style name="control_box">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:orientation">horizontal</item>
+        <item name="android:orientation">vertical</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_alignParentEnd">true</item>
     </style>
     <style name="qnt_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:layout_marginEnd">10dp</item>
-    </style>
-    <style name="control_btn">
-        <item name="android:layout_width">30dp</item>
-        <item name="android:layout_height">30dp</item>
-        <item name="android:background">@drawable/control_btn</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">sans-serif-black</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="control_btn">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
     </style>
     <style name="recycler_view">
         <item name="android:layout_width">match_parent</item>
@@ -96,7 +94,7 @@
         <item name="android:layout_height">55dp</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:backgroundTint">@color/super_green</item>
+        <item name="android:backgroundTint">@color/black</item>
         <item name="android:layout_marginEnd">15dp</item>
         <item name="android:layout_marginBottom">25dp</item>
         <item name="android:src">@drawable/ic_add</item>
@@ -127,26 +125,35 @@
         <item name="android:padding">10dp</item>
         <item name="android:paddingStart">25dp</item>
         <item name="android:gravity">start</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/light_gray</item>
         <item name="android:layout_alignParentBottom">true</item>
     </style>
     <style name="new_unit_container">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/black</item>
         <item name="android:padding">16dp</item>
         <item name="android:gravity">center</item>
+    </style>
+    <style name="new_unit_dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:colorAccent">@color/gold</item>
+        <item name="android:background">@color/black</item>
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom</item>
     </style>
     <style name="new_unit_input">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:inputType">number</item>>
         <item name="android:textSize">20sp</item>>
-        <item name="android:textColor">@color/black</item>>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/light_white</item>>
         <item name="android:textAlignment">center</item>>
 <!--        <item name="android:fontFamily">sans-serif-black</item>>-->
-        <item name="android:backgroundTint">@color/super_green</item>
+        <item name="android:backgroundTint">@color/gold</item>
         <item name="android:layout_centerInParent">true</item>
+        <item name="android:textCursorDrawable">@color/gold</item>
     </style>
     <style name="value_text">
         <item name="android:layout_width">wrap_content</item>
@@ -155,13 +162,14 @@
         <item name="android:layout_marginEnd">25dp</item>
         <item name="android:text">@string/da</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_centerInParent">true</item>
     </style>
     <style name="splash_screen_container">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/light_gray</item>
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center</item>
     </style>

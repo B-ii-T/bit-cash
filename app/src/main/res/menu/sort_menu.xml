@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/time_desc" android:icon="@drawable/ic_desc"
-        android:title="@string/time"/>
-    <item android:id="@+id/time_asc" android:icon="@drawable/ic_asc"
-        android:title="@string/time"/>
-    <item android:id="@+id/value_desc" android:icon="@drawable/ic_desc"
-        android:title="@string/unit_value"/>
-    <item android:id="@+id/value_asc" android:icon="@drawable/ic_asc"
-        android:title="@string/unit_value"/>
-    <item android:id="@+id/qnt_desc" android:icon="@drawable/ic_desc"
-        android:title="@string/quantity"/>
-    <item android:id="@+id/qnt_asc" android:icon="@drawable/ic_asc"
-        android:title="@string/quantity"/>
+    <item android:id="@+id/time_desc"
+        android:title="@string/last_created_first"/>
+    <item android:id="@+id/time_asc"
+        android:title="@string/last_created_last"/>
+    <item android:id="@+id/value_desc"
+        android:title="@string/highest_value_first"/>
+    <item android:id="@+id/value_asc"
+        android:title="@string/highest_value_last"/>
+    <item android:id="@+id/qnt_desc"
+        android:title="@string/largest_quantity_first"/>
+    <item android:id="@+id/qnt_asc"
+        android:title="@string/largest_quantity_last"/>
 </menu>

@@ -23,7 +23,7 @@ public class UnitDialog extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.new_unit_dialog);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         //inflating view into alertDialog
         View view = inflater.inflate(R.layout.new_input, null);
@@ -32,7 +32,7 @@ public class UnitDialog extends AppCompatDialogFragment {
         EditText qntInput = view.findViewById(R.id.new_unit_qnt);
         //customising dialog
         builder.setView(view)
-                .setTitle("add new unit")
+                .setTitle("Add new unit")
                 .setPositiveButton("add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -60,6 +60,9 @@ public class UnitDialog extends AppCompatDialogFragment {
                 });
         return builder.create();
     }
+
+
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

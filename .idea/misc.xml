@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/control_btn.xml" value="0.1695" />
+        <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/control_btn_shape.xml" value="0.1695" />
         <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/ic_add.xml" value="0.246" />
+        <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/ic_asc.xml" value="0.1695" />
+        <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/ic_control_btn.xml" value="0.1695" />
         <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/ic_delete.xml" value="0.1695" />
+        <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/ic_delete_gold.xml" value="0.1695" />
         <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/ic_info.xml" value="0.1695" />
         <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/ic_settings.xml" value="0.246" />
         <entry key="..\:/Users/YOGA 260/AndroidStudioProjects/BitCash/app/src/main/res/drawable/ic_sort.xml" value="0.1695" />
