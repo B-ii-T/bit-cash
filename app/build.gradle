@@ -43,4 +43,6 @@ dependencies {
     //lottie animation dependency
     def lottieVersion = "5.0.3"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    //text animation dependency
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
 }

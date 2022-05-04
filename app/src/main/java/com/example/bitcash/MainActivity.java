@@ -34,6 +34,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.bitcash.UnitContract.UnitEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import maes.tech.intentanim.CustomIntent;
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
                         }
                     });
                     AlertDialog deleteUnitsDialog = deleteUnits.create();
-                    deleteUnitsDialog.getWindow().getAttributes().windowAnimations = R.style.new_unit_dialog; //style id
+                    deleteUnitsDialog.getWindow().getAttributes().windowAnimations = R.style.new_unit_dialog;
                     deleteUnitsDialog.show();
                 }else{
                     Toast.makeText(MainActivity.this, "No units to delete", Toast.LENGTH_SHORT).show();
@@ -229,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements UnitDialog.UnitDi
         if(c.moveToFirst()){
             int total = c.getInt(c.getColumnIndex("Total"));
             totalValue.setText(String.valueOf(total));
+            YoYo.with(Techniques.Flash).duration(500).repeat(0).playOn(totalValue);
         }
         c.close();
     }

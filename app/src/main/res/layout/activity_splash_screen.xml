@@ -6,11 +6,13 @@
     tools:context=".SplashScreen">
     <TextView
         style="@style/splash_screen_text"
-        android:textColor="@color/black"
+        android:textColor="@color/light_gray"
+        android:shadowColor="@color/black"
         android:text="@string/bit"/>
     <TextView
         style="@style/splash_screen_text"
-        android:textColor="@color/super_green"
+        android:textColor="@color/light_gray"
+        android:shadowColor="@color/black"
         android:text="@string/cash"/>
 <!--    <com.airbnb.lottie.LottieAnimationView-->
 <!--        android:id="@+id/cash_animation_view"-->
